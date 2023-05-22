@@ -6,7 +6,6 @@ import SHOP_DATA from '../shop-data.js';
 
 export const CategoriesContext = createContext({
     categoriesMap: {},
-
 });
 
 export const CategoriesProvider = ({ children }) => {

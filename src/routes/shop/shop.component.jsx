@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 
-import { useContext, Fragment } from 'react';
+import { useEffect, useContext, Fragment } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { CategoriesContext, CategoriesProvider } from '../../contexts/categories.context';
 import ProductCard from '../../components/product-card/product-card.component';
@@ -10,8 +11,21 @@ import CategoriesPreview from '../categories-preview/categories-preview.componen
 import Category from "../category/category.component";
 
 import './shop.styles.scss';
+import { getCategoriesAndDocuments } from '../../utils/firebase/firebase.utils';
+import { setCategoriesMap } from '../../store/categories/category.action';
 
 const Shop = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const getCategoriesMap = async () => {
+            const categoryMap = await getCategoriesAndDocuments("categories");
+            dispatch(setCategoriesMap(categoryMap));
+        };
+
+        getCategoriesMap();
+    }, []);
+
 
     return (
         <Routes>
