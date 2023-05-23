@@ -1,5 +1,8 @@
 import { useContext } from 'react';
 
+import { useDispatch } from 'react-redux';
+import { addItemToCart } from '../../store/cart/cart.action';
+
 import './product-card.styles.scss';
 
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
