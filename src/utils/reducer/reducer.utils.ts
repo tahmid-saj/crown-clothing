@@ -1,5 +1,25 @@
 import { AnyAction } from "redux";
 
+type Matchable<AC extends () => AnyAction> = AC & {
+    type: ReturnType<AC>["type"];
+    match(action: AnyAction): action is ReturnType<AC>;
+};
+
+type Human = {
+    name: string;
+};
+
+type Alien = {
+    fly: () => void;
+};
+
+type Hybrid = Human & Alien;
+
+const Josh: Hybrid = {
+    name: "Josh",
+    fly: () => {}
+}
+
 // Type predicate
 // type Alien = {
 //     fly: () => {};
