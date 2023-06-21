@@ -1,11 +1,15 @@
-import { createAction } from "../../utils/reducer/reducer.utils";
+import { createAction, withMatcher, Action, ActionWithPayload } from "../../utils/reducer/reducer.utils";
 import { USER_ACTION_TYPES } from "./user.types";
+import { UserData } from "../../utils/firebase/firebase.utils";
 
-export const setCurrentUser = (user) => {
-    return createAction(USER_ACTION_TYPES.SET_CURRENT_USER, user);
-};
+export type CheckUserSession = Action<USER_ACTION_TYPES.SET_CURRENT_USER>;
 
-export const checkUserSession = () => createAction(USER_ACTION_TYPES.CHECK_USER_SESSION);
+export const checkUserSession = withMatcher(() => createAction(USER_ACTION_TYPES.CHECK_USER_SESSION));
+
+// export const setCurrentUser = (user) => {
+//     return createAction(USER_ACTION_TYPES.SET_CURRENT_USER, user);
+// };
+
 
 export const googleSignInStart = () => createAction(USER_ACTION_TYPES.GOOGLE_SIGN_IN_START);
 
