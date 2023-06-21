@@ -4,8 +4,9 @@ import { CategoriesState } from "./category.reducer";
 
 import { selectCurrentUser } from "../user/user.selector";
 import { CategoryMap } from "./category.types";
+import { RootState } from "../store";
 
-const selectCategoryReducer = (state) => {
+const selectCategoryReducer = (state: RootState) => {
     return state.categories;
 };
 
