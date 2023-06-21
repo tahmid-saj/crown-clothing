@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, FormEvent, ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { signInWithGooglePopup, 
@@ -37,7 +37,7 @@ const SignInForm = () => {
     
     }
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         try {
@@ -64,7 +64,7 @@ const SignInForm = () => {
         // await createAuthUserWithEmailAndPassword(email, password);
     };
 
-    const handleChange = (event) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
 
         setFormFields({...formFields, [name]: value});
@@ -78,7 +78,7 @@ const SignInForm = () => {
                 Sign in with your email and password
             </span>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={() => handleSubmit}>
                 <FormInput label="Email" type="email" required onChange={handleChange} name="email" value={email}/>
 
                 <FormInput label="Password" type="password" required onChange={handleChange} name="password" value={password}/>
