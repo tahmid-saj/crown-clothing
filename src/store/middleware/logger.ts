@@ -6,7 +6,10 @@ import storage from "redux-persist/lib/storage"
 
 import { rootReducer } from './root.reducer';
 
-export const loggerMiddleware = (store) => (next) => (action) => {
+import { Middleware } from "redux";
+import { RootState } from '../store';
+
+export const loggerMiddleware = Middleware<{}, RootState> = (store) => (next) => (action) => {
     if (!action.type) {
         return next(action);
     }
@@ -18,4 +21,4 @@ export const loggerMiddleware = (store) => (next) => (action) => {
     next(action);
 
     console.log("Next state: ", store.getState());
-}
+};
